@@ -99,6 +99,39 @@
             backdrop-filter: blur(10px);
         }
 
+        #reader-view {
+            max-height: 85vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #reader-view::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        #reader-view::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 1px solid var(--terminal-green);
+        }
+
+        #reader-view::-webkit-scrollbar-thumb {
+            background: var(--terminal-green);
+            border-radius: 2px;
+            box-shadow: var(--terminal-glow);
+        }
+
+        #reader-view::-webkit-scrollbar-thumb:hover {
+            background: #00ff66;
+        }
+
+        #doc-content {
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            padding-right: 1rem;
+        }
+
         #login-view.panel {
             box-shadow: 
                 inset 0 0 30px rgba(0, 255, 0, 0.12),
@@ -239,10 +272,18 @@
 
         /* Reader View Styles */
         #reader-view {
-            display: none;
+            display: none !important;
             grid-template-columns: 1fr;
             max-width: 900px;
             margin: 0 auto;
+            max-height: 85vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        #reader-view.active {
+            display: flex !important;
+            flex-direction: column;
         }
 
         .back-btn {
@@ -345,8 +386,8 @@
                 <li onclick="openDoc('DOC_002')">DOC_002: Birthdays</li>
                 <li onclick="openDoc('DOC_003')">DOC_003: May</li>
                 <li onclick="openDoc('DOC_004')">DOC_004: A certain rock band</li>
-                <li onclick="openDoc('DOC_005')">DOC_005: Incident Log 442: the confession</li>
-                <li onclick="openDoc('DOC_006')">DOC_006: Somebody who doesn't like sweets</li>
+                <li onclick="openDoc('DOC_005')">DOC_005: Incident Log 442</li>
+                <li onclick="openDoc('DOC_006')">DOC_006: A 6 eyed demon</li>
                 <li onclick="openDoc('DOC_007')">DOC_007: Thoughts</li>
                 <li onclick="openDoc('DOC_008')">DOC_008: Special someone</li>
             </ul>
@@ -396,31 +437,31 @@
         const archiveData = {
             "DOC_001": { 
                 title: "Fourteen", 
-                content: "FROM: Apex Foundation Command\nTO: All Staff\n\nPhase 1 is authorized. Ensure absolute secrecy regarding the timeline. We only have three days to establish the primary loop.",
+                content: "01101000 01101001 00100000 01101000 01100001 01110000 01110000 01111001 00100000 01100010 01101001 01110010 01110100 01101000 01100100 01100001 01111001 00100000 01100010 01111001 01100101",
 				signature: "-Mrudil",
-                question: "How many days do we have to establish the primary loop?",
-                answer: "three"
+                question: "What project was deemed a failure?",
+                answer: "Atlas"
             },
             "DOC_002": { 
                 title: "Birthdays", 
                 content: "Axiom-7 requires immediate recalibration. The red glow from the terminal interface is exceeding safe visual parameters. Fix the HTML rendering before the next shift.",
 				signature: "-Sashtik",
-                question: "What system requires immediate recalibration?",
+                question: "What was the result of project Atlas",
                 answer: "Axiom-7"
             },
             "DOC_003": { 
                 title: "May", 
                 content: "Standard protocols are no longer sufficient. Ensure all encrypted channels remain active and monitor the external servers for breaches.",
 				signature: "-Lucas",
-                question: "What must remain active?",
-                answer: "encrypted channels"
+                question: "Who is the Neural interface engineer?",
+                answer: "Iris Volkov"
             },
             "DOC_004": { 
                 title: "A certain rock band", 
                 content: "SUBJECT: 'El suspitós'\n\nSubject is behaving erratically. Recommend isolating the subject from the main group until the narrative resets.",
 				signature: "-Arthur",
-                question: "What is the subject's codename?",
-                answer: "El suspitós"
+                question: "Which government entity initialised project Atlas?",
+                answer: "Apex Foundation"
             },
             "DOC_005": { 
                 title: "Incident Log 442: the confession", 
@@ -430,25 +471,25 @@
                 answer: "unauthorized access"
             },
             "DOC_006": { 
-                title: "Somebody who doesn't like sweets", 
-                content: "Agent Aleph-1 is being reassigned effective immediately. Clear their clearance codes from the old terminal.",
-				signature: "-Martin",
-                question: "Which agent is being reassigned?",
-                answer: "Aleph-1"
+                title: "a six eyed demon", 
+                content: "Happy birthday, my sushi\n\nYou survived another year of chaos, me annoying you (always yapping), your brother's chaos, your parents always getting mad at you but here you are, as strong as a rock and untouchable. That's what I love you for, proud of you tho.\n\nI was gonna get you something meaningful but then, i remembered you already have me in your life, so you're welcome.\n\ni just wanted to say that you're genuinely one of my favorite people ever, which is annoying because now i have to care about your wellbeing and stuff. And I'm also surprised by how your parents trust me more than you, like WOW. But okay imma keep their trust and not kidnap you.\n\nThanks for always being there, being insane with me, listening to my nonsense, and somehow making every situation 10x funnier than it should be. It's true that if I had to choose a best moment with you, I wouldn't be able to do it because you make every moment best.\n\ni hope this year gives you:\n  * good memories\n  * Not hot people (u have me)\n  * free food\n\nPlease never change. actually no, change a little. maybe try sleeping more or take sleeping pills lol.\n\nhave the best birthday ever idiot ♡",
+				signature: "— definitely not someone from your camera roll / your cotton candy 🍭",
+                question: "What part of the neural link needed to be accessed to build cipher-7?",
+                answer: "core"
             },
             "DOC_007": { 
                 title: "Thoughts", 
-                content: "Status on Sector 4? Everything needs to remain strictly 'tancats' (locked down). No one gets in or out until the echo fades completely.",
-				signature: "-Prateeksha",
-                question: "Which sector's status is being queried?",
-                answer: "Sector 4"
+                content: "Happy birthday, my sushi\n\nYou survived another year of chaos, me annoying you (always yapping), your brother's chaos, your parents always getting mad at you but here you are, as strong as a rock and untouchable. That's what I love you for, proud of you tho.\n\nI was gonna get you something meaningful but then, i remembered you already have me in your life, so you're welcome.\n\ni just wanted to say that you're genuinely one of my favorite people ever, which is annoying because now i have to care about your wellbeing and stuff. And I'm also surprised by how your parents trust me more than you, like WOW. But okay imma keep their trust and not kidnap you.\n\nThanks for always being there, being insane with me, listening to my nonsense, and somehow making every situation 10x funnier than it should be. It's true that if I had to choose a best moment with u, I wouldn't be able to do it because you make every moment best.\n\ni hope this year gives you:\n  good memories\n  Not hot people (u have me)\n  free food\n\nPlease never change. actually no, change a little. maybe try sleeping more or take sleeping pills lol.\n\nhave the best birthday ever idiot ♡",
+                signature: "— definitely not someone from your camera roll / your cotton candy 🍭",
+                question: "Which sector was compromised?",
+                answer: "Delta"
             },
             "DOC_008": { 
                 title: "Special someone", 
                 content: "If you are reading this, the containment has failed. Proceed with the final 10-minute sequence. Do not look directly at the monitors.",
                 signature: "-Nithilan",
-                question: "How many minutes for the final sequence?",
-                answer: "10"
+                question: "What was the new project for Cipher-7 called?",
+                answer: "Crimson"
             },
             "REP_001": { 
                 title: "Resource Allocation", 
@@ -524,7 +565,8 @@
         function displayDocument(docId) {
             document.getElementById('directory-view').style.display = 'none';
             document.getElementById('challenge-view').style.display = 'none';
-            document.getElementById('reader-view').style.display = 'block';
+            document.getElementById('reader-view').style.display = 'flex';
+            document.getElementById('reader-view').classList.add('active');
 
             const doc = archiveData[docId];
             document.getElementById('doc-title').innerText = `> ${docId}: ${doc.title}_`;
@@ -589,6 +631,7 @@
         function closeDoc() {
             clearInterval(typingInterval);
             document.getElementById('reader-view').style.display = 'none';
+            document.getElementById('reader-view').classList.remove('active');
             document.getElementById('directory-view').style.display = 'grid';
             currentDocId = null;
         }
